@@ -14,9 +14,14 @@ describe('Layout', () => {
     expect(wrapper.html().includes("game-board")).toBeTruthy();
   })
 
-  it('should contain the GameBoard', () => {
+  it('should contain the Options', () => {
     const wrapper = shallow(<Layout />);
     expect(wrapper.html().includes("Options")).toBeTruthy();
+  })
+
+  it('should contain the Player', () => {
+    const wrapper = shallow(<Layout />);
+    expect(wrapper.html().includes("Player")).toBeTruthy();
   })
 
 })
