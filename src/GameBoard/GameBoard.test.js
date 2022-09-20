@@ -35,4 +35,9 @@ describe('GameBoard', () => {
     expect(updateBoardHistory(history, null, 'rollback')).toEqual([]);
   })
 
+  it('should reset the history', () => {
+    let history = [["", "", "x", "", "", "", "", "", ""], ["o", "", "x", "", "", "", "", "", ""]]
+    expect(updateBoardHistory(history, null, 'reset')).toEqual([]);
+  })
+
 })

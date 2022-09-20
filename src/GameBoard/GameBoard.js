@@ -9,6 +9,8 @@ function updateBoardHistory(history, board, command) {
         updatedHistory = [...updatedHistory, board]
     } else if (command === 'rollback') {
         updatedHistory.pop();
+    } else if (command === 'reset') {
+        updatedHistory = [];
     }
 
     return updatedHistory;
