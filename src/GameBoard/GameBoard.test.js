@@ -9,4 +9,9 @@ describe('GameBoard', () => {
     expect(wrapper.length).toBe(1);
   })
 
+  it('should have a list of tiles', () => {
+    const wrapper = shallow(<GameBoard />);
+    expect(wrapper.children().length).toBe(1);
+  })
+
 })
