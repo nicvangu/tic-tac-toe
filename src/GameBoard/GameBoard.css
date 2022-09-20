@@ -2,7 +2,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
+    height: 100px;
+    /* grid-auto-rows: minmax(100px, auto); */
     background: #ccc;
     width: 50%;
 }

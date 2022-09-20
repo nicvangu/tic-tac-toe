@@ -1,5 +1,10 @@
+import './Tile.css';
+
 function Tile(props) {
-    return <div id={`tile-${props.index}`} className="tile">{props.value}</div>
+    const { onClick, index, value } = props;
+
+    console.log(props.value)
+    return <div id={`tile-${index}`} className="tile" onClick={onClick}>{value}</div>
 }
 
 export default Tile;
