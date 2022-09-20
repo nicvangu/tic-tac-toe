@@ -1,11 +1,16 @@
-import './Layout.css';
+import './Game.css';
 import GameBoard from '../GameBoard/GameBoard';
 import Options from '../Options/Options';
 import Player from '../Player/Player';
 
-function Layout() {
+function Game() {
+
+    function startGame() {
+        
+    }
+
     return (
-        <div className="Layout">
+        <div className="Game">
             <div>
                 <Player message={"Player One's Turn"}/>
                 <GameBoard />
@@ -15,4 +20,4 @@ function Layout() {
     );
 }
 
-export default Layout;
+export default Game;

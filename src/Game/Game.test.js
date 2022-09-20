@@ -1,4 +1,4 @@
-import Layout from './Layout';
+import Layout from './Game';
 import { shallow } from 'enzyme';
 
 
