@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Tile from '../Tile/Tile';
 import './GameBoard.css';
 
@@ -7,6 +7,8 @@ function updateBoardHistory(history, board, command) {
 
     if (command === 'add') {
         updatedHistory = [...updatedHistory, board]
+    } else if (command === 'rollback') {
+        updatedHistory.pop();
     }
 
     return updatedHistory;
