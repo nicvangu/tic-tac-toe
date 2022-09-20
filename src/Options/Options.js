@@ -1,9 +1,12 @@
 import './Options.css';
 
-function Options() {
+function Options(props) {
+  const { onUndo, onReset } = props;
+
   return (
     <div className="Options">
-      Options buttons
+      <button className='options-button' id="undo-button" onClick={onUndo}>Undo</button>
+      <button  className='options-button' id="reset-button" onClick={onReset}>Reset</button>
     </div>
   );
 }

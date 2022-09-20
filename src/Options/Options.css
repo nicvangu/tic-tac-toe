@@ -1,0 +1,37 @@
+/* .\238C */
+
+.Options {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+
+}
+
+.options-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 5px 20px 3px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    font-size: 18px
+}
+
+#undo-button {
+    background: #8D8DAA;
+}
+
+#undo-button::after {
+    content: "\00a0\00a0\238C";
+}
+
+#reset-button {
+    background: #C21010;
+}
+
+#reset-button::after {
+    content: "\00a0\00a0\21BA";
+}
