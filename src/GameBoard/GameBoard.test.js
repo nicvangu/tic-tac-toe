@@ -1,5 +1,5 @@
-import GameBoard from './GameBoard';
-import { shallow, mount } from 'enzyme';
+import GameBoard, { updateBoardHistory } from './GameBoard';
+import { shallow } from 'enzyme';
 
 
 describe('GameBoard', () => {
@@ -15,9 +15,14 @@ describe('GameBoard', () => {
   })
 
   it('should handleTileSelection', () => {
-    const wrapper = mount(<GameBoard />);
-    wrapper.find('.tile').at(0).simulate('click');
-    expect(wrapper.find('.tile').at(0).text()).toBe('x')
+    const wrapper = shallow(<GameBoard />);
+    wrapper.find('#tile-0').simulate('click');
+    expect(wrapper.find('#tile-0').prop('value')).toBe('x')
+  })
+
+  it('should add to the board history', () => {
+    let history = [];
+    expect(updateBoardHistory(history, ['','','x','','','','','',''], 'add')).toEqual([["", "", "x", "", "", "", "", "", ""]]);
   })
 
 })
