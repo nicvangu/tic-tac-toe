@@ -30,4 +30,9 @@ describe('GameBoard', () => {
     expect(updateBoardHistory(history, null, 'rollback')).toEqual([["", "", "x", "", "", "", "", "", ""]]);
   })
 
+  it('should prevent an null pointer exception if the history is empty', () => {
+    let history = []
+    expect(updateBoardHistory(history, null, 'rollback')).toEqual([]);
+  })
+
 })
