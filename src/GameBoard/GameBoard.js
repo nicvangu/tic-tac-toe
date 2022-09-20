@@ -22,12 +22,11 @@ function GameBoard() {
 
     
     const handleTileSelection = (index) => {
-        let tempTiles = [...tiles];
-        tempTiles[index] = 'x';
-        setTiles(tempTiles);
+        let newTiles = [...tiles];
+        newTiles[index] = 'x';
+        setTiles(newTiles);
+        setBoardHistory(updateBoardHistory(boardHistory, newTiles, 'add'))
     }
-    
-    
 
     return (<div className="game-board">
         {tiles.map((value, index) => {

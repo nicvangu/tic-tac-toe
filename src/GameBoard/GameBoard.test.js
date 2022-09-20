@@ -39,5 +39,5 @@ describe('GameBoard', () => {
     let history = [["", "", "x", "", "", "", "", "", ""], ["o", "", "x", "", "", "", "", "", ""]]
     expect(updateBoardHistory(history, null, 'reset')).toEqual([]);
   })
-
+ 
 })

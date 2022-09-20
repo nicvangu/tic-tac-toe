@@ -1,9 +1,9 @@
 .game-board {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 100px);
     gap: 10px;
-    height: 100px;
-    /* grid-auto-rows: minmax(100px, auto); */
+    grid-auto-rows: minmax(100px, auto);
     background: #ccc;
-    width: 50%;
+    width: 320px;
+    padding: 10px;   
 }
