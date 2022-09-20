@@ -3,7 +3,7 @@ import GameBoard from '../GameBoard/GameBoard';
 
 function Layout() {
   return (
-    <div className="App">
+    <div className="Layout">
       <GameBoard />
     </div>
   );

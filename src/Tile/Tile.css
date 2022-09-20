@@ -3,3 +3,15 @@
     line-height: 20vh;
     font-size: 64px;
 }
+
+/* .tile:after{
+    display: inline-block;
+    content: "\00d7";
+}
+
+.tile:after{
+    display: inline-block;
+    content: "\25EF";
+}
+
+ */

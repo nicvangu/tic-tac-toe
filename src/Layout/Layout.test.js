@@ -9,4 +9,9 @@ describe('Layout', () => {
     expect(wrapper.length).toBe(1);
   })
 
+  it('should contain the GameBoard', () => {
+    const wrapper = shallow(<Layout />);
+    expect(wrapper.html().includes("game-board")).toBeTruthy();
+  })
+
 })
