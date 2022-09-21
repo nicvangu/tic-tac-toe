@@ -3,32 +3,11 @@ import React, { useState } from 'react';
 import GameBoard from '../GameBoard/GameBoard';
 import Options from '../Options/Options';
 import Player from '../Player/Player';
-import { isDraw, isWinner } from '../Utils/gameLogic';
+import { isDraw, isWinner, updateBoardHistory, togglePlayer } from '../Utils/gameLogic';
 
-function updateBoardHistory(history, board, command) {
-    let updatedHistory = [...history]
 
-    if (command === 'add') {
-        updatedHistory = [...updatedHistory, board]
-    } else if (command === 'rollback') {
-        const indexToRemove = updatedHistory.length - 1;
-        if (indexToRemove >= 0) {
-            updatedHistory = [...updatedHistory.slice(0, indexToRemove)];
-        }
-    } else if (command === 'reset') {
-        updatedHistory = [];
-    }
-
-    return updatedHistory;
-}
-
-function togglePlayer(currentPlayer) {
-    return currentPlayer === 'X' ? 'O' : 'X';
-}
-
-const defaultTiles = ['','','','','','','','',''];
-
-function Game() {    
+function Game() {
+    const defaultTiles = ['', '', '', '', '', '', '', '', ''];
     const [tiles, setTiles] = useState(defaultTiles);
     const [boardHistory, setBoardHistory] = useState([]);
     const [currentPlayer, setCurrentPlayer] = useState('X')
@@ -63,7 +42,7 @@ function Game() {
         } else if (gameIsADraw) {
             setPlayerMessage('Draw')
         }
-        
+
         nextGameState = currentPlayerWon || gameIsADraw;
         setIsGameOver(nextGameState)
 
@@ -98,11 +77,11 @@ function Game() {
             setPlayerMessage(`Player ${nextPlayer} Turn`)
         }
     }
-   
+
     return (
         <div className="Game">
             <div>
-                <Player id="player" message={playerMessage}/>
+                <Player id="player" message={playerMessage} />
                 <GameBoard id="game-board" handleTileSelection={handleTileSelection} tiles={tiles} />
                 <Options id="options" onUndo={handleUndo} onReset={initGame} />
             </div>
@@ -111,6 +90,3 @@ function Game() {
 }
 
 export default Game;
-
-
-export { updateBoardHistory }

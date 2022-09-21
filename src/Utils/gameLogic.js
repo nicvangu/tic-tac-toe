@@ -34,4 +34,25 @@ function isDraw(boardState) {
     return !boardState.includes('');
 }
 
-export { isWinner, isDraw };
+function updateBoardHistory(history, board, command) {
+    let updatedHistory = [...history]
+
+    if (command === 'add') {
+        updatedHistory = [...updatedHistory, board]
+    } else if (command === 'rollback') {
+        const indexToRemove = updatedHistory.length - 1;
+        if (indexToRemove >= 0) {
+            updatedHistory = [...updatedHistory.slice(0, indexToRemove)];
+        }
+    } else if (command === 'reset') {
+        updatedHistory = [];
+    }
+
+    return updatedHistory;
+}
+
+function togglePlayer(currentPlayer) {
+    return currentPlayer === 'X' ? 'O' : 'X';
+}
+
+export { isWinner, isDraw, updateBoardHistory, togglePlayer };

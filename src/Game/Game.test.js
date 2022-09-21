@@ -1,4 +1,4 @@
-import Game, { updateBoardHistory } from './Game';
+import Game from './Game';
 import { shallow, mount } from 'enzyme';
 
 describe('Game', () => {
@@ -21,26 +21,6 @@ describe('Game', () => {
   it('should contain the Player', () => {
     const wrapper = shallow(<Game />);
     expect(wrapper.html().includes("Player")).toBeTruthy();
-  })
-
-  it('should add to the board history', () => {
-    let history = [];
-    expect(updateBoardHistory(history, ['','','x','','','','','',''], 'add')).toEqual([["", "", "x", "", "", "", "", "", ""]]);
-  })
-
-  it('should rollback history', () => {
-    let history = [["", "", "x", "", "", "", "", "", ""], ["o", "", "x", "", "", "", "", "", ""]]
-    expect(updateBoardHistory(history, null, 'rollback')).toEqual([["", "", "x", "", "", "", "", "", ""]]);
-  })
-
-  it('should prevent an null pointer exception if the history is empty', () => {
-    let history = []
-    expect(updateBoardHistory(history, null, 'rollback')).toEqual([]);
-  })
-
-  it('should reset the history', () => {
-    let history = [["", "", "x", "", "", "", "", "", ""], ["o", "", "x", "", "", "", "", "", ""]]
-    expect(updateBoardHistory(history, null, 'reset')).toEqual([]);
   })
 
   it('should update the board when there is player input', () => {
