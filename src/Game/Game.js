@@ -22,8 +22,10 @@ function togglePlayer(currentPlayer) {
     return currentPlayer === 'X' ? 'O' : 'X';
 }
 
-function Game() {
-    const [tiles, setTiles] = useState(['','','','','','','','','']);
+const defaultTiles = ['','','','','','','','',''];
+
+function Game() {    
+    const [tiles, setTiles] = useState(defaultTiles);
     const [boardHistory, setBoardHistory] = useState([]);
     const [currentPlayer, setCurrentPlayer] = useState('X')
     
@@ -35,17 +37,22 @@ function Game() {
         setCurrentPlayer(togglePlayer(currentPlayer))
     }
 
-    function startGame() {
-        updateBoardHistory([], null, 'reset')
+    function initGame() {
+        setTiles(defaultTiles)
+        setBoardHistory(updateBoardHistory([], null, 'reset'))
         setCurrentPlayer('X')
+    }
+
+    function handleUndo() {
+        
     }
    
     return (
         <div className="Game">
             <div>
                 <Player message={"Player One's Turn"}/>
-                <GameBoard handleTileSelection={handleTileSelection} tiles={tiles} />
-                <Options />
+                <GameBoard id="game-board" handleTileSelection={handleTileSelection} tiles={tiles} />
+                <Options id="options" onUndo={handleUndo} onReset={initGame} />
             </div>
         </div>
     );

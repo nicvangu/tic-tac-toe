@@ -1,5 +1,6 @@
 import Game, { updateBoardHistory } from './Game';
-import { shallow } from 'enzyme';
+import GameBoard from '../GameBoard/GameBoard';
+import { shallow, mount } from 'enzyme';
 
 describe('Game', () => {
 
@@ -43,6 +44,17 @@ describe('Game', () => {
     expect(updateBoardHistory(history, null, 'reset')).toEqual([]);
   })
 
+  it('should update the board when there is player input', () => {
+    const wrapper = mount(<Game />);
+    wrapper.find('#tile-0').at(0).simulate('click');
+    expect(wrapper.find("#game-board").html().includes('>X<')).toBeTruthy()
+  })
 
+  it('should restart the game', () => {
+    const wrapper = mount(<Game />);
+    wrapper.find('#tile-0').at(0).simulate('click');
+    wrapper.find('#reset-button').simulate('click');
+    expect(wrapper.find("#game-board").html().includes('>X<')).toBeFalsy()
+  })
 
 })
