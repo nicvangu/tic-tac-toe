@@ -1,30 +1,29 @@
 
 function isWinner(boardState, player) {
     let winsGame = false;
+
     const winningCombinations = [
-        '012',
-        '036',
-        '048',
-        '147',
-        '246',
-        '258',
-        '345',
-        '678'
+        [0,1,2],
+        [0,3,6],
+        [0,4,8],
+        [1,4,7],
+        [2,4,6],
+        [2,5,8],
+        [3,4,5],
+        [6,7,8]
     ];
 
-    let playerMoves = '';
+    let playerMoves = [];
 
-    boardState.map((value, index) => {
-        if (value == player) {
-            playerMoves = playerMoves + '' + index;
+    boardState.map((tile, index) => {
+
+        if (tile == player) {
+            playerMoves.push(index);
         }
     });
 
     winningCombinations.forEach(combination => {
-        if (playerMoves.includes(combination)) {
-            winsGame = true;
-            return;
-        }
+        winsGame = winsGame || combination.every(val => playerMoves.includes(val));
     })
 
     return winsGame;

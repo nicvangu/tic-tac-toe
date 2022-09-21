@@ -65,14 +65,13 @@ function Game() {
             if (nextBoardHistory.length > 0) {
                 nextTiles = nextBoardHistory[nextBoardHistory.length - 1];
                 setBoardHistory(nextBoardHistory)
-                setTiles(nextTiles)
                 nextPlayer = togglePlayer(currentPlayer);
             } else {
                 nextTiles = defaultTiles;
                 setBoardHistory(nextBoardHistory);
-                setTiles(nextTiles);
                 nextPlayer = 'X';
             }
+            setTiles(nextTiles)
             setCurrentPlayer(nextPlayer)
             setPlayerMessage(`Player ${nextPlayer} Turn`)
         }

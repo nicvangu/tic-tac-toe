@@ -2,6 +2,15 @@
     background-color: white;
     font-size: 64px;
     cursor: pointer;
+    transition: background 0.2s ease-in-out;
 }
 
+.tile:hover {
+    background: rgb(182, 196, 226);
+}
+
+.tile-occupied:hover {
+    background: white;
+    cursor: default;
+}
 
