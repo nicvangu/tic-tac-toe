@@ -75,25 +75,28 @@ function Game() {
         setBoardHistory(updateBoardHistory([], null, 'reset'))
         setCurrentPlayer('X')
         setPlayerMessage(`X\'s turn`)
+        setIsGameOver(false)
     }
 
     function handleUndo() {
-        let nextBoardHistory = updateBoardHistory(boardHistory, null, 'rollback')
-        let nextTiles;
-        let nextPlayer;
-        if (nextBoardHistory.length > 0) {
-            nextTiles = nextBoardHistory[nextBoardHistory.length - 1];
-            setBoardHistory(nextBoardHistory)
-            setTiles(nextTiles)
-            nextPlayer = togglePlayer(currentPlayer);
-        } else {
-            nextTiles = defaultTiles;
-            setBoardHistory(nextBoardHistory);
-            setTiles(nextTiles);
-            nextPlayer = 'X';
+        if (!isGameOver) {
+            let nextBoardHistory = updateBoardHistory(boardHistory, null, 'rollback')
+            let nextTiles;
+            let nextPlayer;
+            if (nextBoardHistory.length > 0) {
+                nextTiles = nextBoardHistory[nextBoardHistory.length - 1];
+                setBoardHistory(nextBoardHistory)
+                setTiles(nextTiles)
+                nextPlayer = togglePlayer(currentPlayer);
+            } else {
+                nextTiles = defaultTiles;
+                setBoardHistory(nextBoardHistory);
+                setTiles(nextTiles);
+                nextPlayer = 'X';
+            }
+            setCurrentPlayer(nextPlayer)
+            setPlayerMessage(`${nextPlayer}\'s turn`)
         }
-        setCurrentPlayer(nextPlayer)
-        setPlayerMessage(`${nextPlayer}\'s turn`)
     }
    
     return (
