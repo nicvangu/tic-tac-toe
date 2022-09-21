@@ -110,4 +110,15 @@ describe('Game', () => {
     expect(wrapper.find('#player').text()).toBe("Draw");
   })
 
+  it('should not allow for more tile selection after a game over', () => {
+    const wrapper = mount(<Game />);
+    wrapper.find('#tile-0').at(0).simulate('click');
+    wrapper.find('#tile-3').at(0).simulate('click');
+    wrapper.find('#tile-1').at(0).simulate('click');
+    wrapper.find('#tile-4').at(0).simulate('click');
+    wrapper.find('#tile-2').at(0).simulate('click');
+    wrapper.find('#tile-7').at(0).simulate('click');
+    expect(wrapper.find('#player').text()).toBe("X wins!");
+  })
+
 })
