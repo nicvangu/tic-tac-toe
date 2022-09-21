@@ -32,7 +32,7 @@ function Game() {
     const [tiles, setTiles] = useState(defaultTiles);
     const [boardHistory, setBoardHistory] = useState([]);
     const [currentPlayer, setCurrentPlayer] = useState('X')
-    const [playerMessage, setPlayerMessage] = useState('X\'s Turn')
+    const [playerMessage, setPlayerMessage] = useState('Player X Turn')
     const [isGameOver, setIsGameOver] = useState(false);
 
     function handleTileSelection(index) {
@@ -47,7 +47,7 @@ function Game() {
                 if (!findWinner(newTiles)) {
                     nextPlayer = togglePlayer(currentPlayer);
                     setCurrentPlayer(nextPlayer)
-                    setPlayerMessage(`${nextPlayer}\'s turn`)
+                    setPlayerMessage(`Player ${nextPlayer} Turn`)
                 }
             }
         }
@@ -59,7 +59,7 @@ function Game() {
         let gameIsADraw = isDraw(newTiles);
 
         if (currentPlayerWon) {
-            setPlayerMessage(`${currentPlayer} wins!`)
+            setPlayerMessage(`Player ${currentPlayer} Wins!`)
         } else if (gameIsADraw) {
             setPlayerMessage('Draw')
         }
@@ -74,7 +74,7 @@ function Game() {
         setTiles(defaultTiles)
         setBoardHistory(updateBoardHistory([], null, 'reset'))
         setCurrentPlayer('X')
-        setPlayerMessage(`X\'s turn`)
+        setPlayerMessage(`Player X Turn`)
         setIsGameOver(false)
     }
 
@@ -95,7 +95,7 @@ function Game() {
                 nextPlayer = 'X';
             }
             setCurrentPlayer(nextPlayer)
-            setPlayerMessage(`${nextPlayer}\'s turn`)
+            setPlayerMessage(`Player ${nextPlayer} Turn`)
         }
     }
    
