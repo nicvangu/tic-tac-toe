@@ -64,4 +64,12 @@ describe('Game', () => {
     expect(wrapper.find("#game-board").html().includes('>X<')).toBeFalsy()
   })
 
+  it('should indicate the current player\'s turn', () => {
+    const wrapper = mount(<Game />);
+    wrapper.find('#tile-0').at(0).simulate('click');
+    expect(wrapper.find('#player').text()).toBe("O's turn");
+    wrapper.find('#tile-1').at(0).simulate('click');
+    expect(wrapper.find('#player').text()).toBe("X's turn")
+  })
+
 })

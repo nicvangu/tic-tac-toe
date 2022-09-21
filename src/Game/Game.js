@@ -28,15 +28,19 @@ function Game() {
     const [tiles, setTiles] = useState(defaultTiles);
     const [boardHistory, setBoardHistory] = useState([]);
     const [currentPlayer, setCurrentPlayer] = useState('X')
-    
+    const [playerMessage, setPlayerMessage] = useState('X\'s Turn')
+
     const handleTileSelection = (index) => {
         let newTiles = [...tiles];
+        let nextPlayer;
 
         if (newTiles[index] === '') {
             newTiles[index] = currentPlayer;
             setTiles(newTiles);
             setBoardHistory(updateBoardHistory(boardHistory, newTiles, 'add'))
-            setCurrentPlayer(togglePlayer(currentPlayer))
+            nextPlayer = togglePlayer(currentPlayer);
+            setCurrentPlayer(nextPlayer)
+            setPlayerMessage(`${nextPlayer}\'s turn`)
         }
 
     }
@@ -45,6 +49,7 @@ function Game() {
         setTiles(defaultTiles)
         setBoardHistory(updateBoardHistory([], null, 'reset'))
         setCurrentPlayer('X')
+        setPlayerMessage(`X\'s turn`)
     }
 
     function handleUndo() {
@@ -54,7 +59,7 @@ function Game() {
     return (
         <div className="Game">
             <div>
-                <Player message={"Player One's Turn"}/>
+                <Player id="player" message={playerMessage}/>
                 <GameBoard id="game-board" handleTileSelection={handleTileSelection} tiles={tiles} />
                 <Options id="options" onUndo={handleUndo} onReset={initGame} />
             </div>
