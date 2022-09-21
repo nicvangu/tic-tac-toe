@@ -10,7 +10,10 @@ function updateBoardHistory(history, board, command) {
     if (command === 'add') {
         updatedHistory = [...updatedHistory, board]
     } else if (command === 'rollback') {
-        updatedHistory.pop();
+        const indexToRemove = updatedHistory.length - 1;
+        if (indexToRemove >= 0) {
+            updatedHistory = [...updatedHistory.slice(0, indexToRemove)];
+        }
     } else if (command === 'reset') {
         updatedHistory = [];
     }
@@ -53,7 +56,22 @@ function Game() {
     }
 
     function handleUndo() {
-        
+        let nextBoardHistory = updateBoardHistory(boardHistory, null, 'rollback')
+        let nextTiles;
+        let nextPlayer;
+        if (nextBoardHistory.length > 0) {
+            nextTiles = nextBoardHistory[nextBoardHistory.length - 1];
+            setBoardHistory(nextBoardHistory)
+            setTiles(nextTiles)
+            nextPlayer = togglePlayer(currentPlayer);
+        } else {
+            nextTiles = defaultTiles;
+            setBoardHistory(nextBoardHistory);
+            setTiles(nextTiles);
+            nextPlayer = 'X';
+        }
+        setCurrentPlayer(nextPlayer)
+        setPlayerMessage(`${nextPlayer}\'s turn`)
     }
    
     return (

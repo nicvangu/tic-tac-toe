@@ -57,7 +57,7 @@ describe('Game', () => {
     expect(wrapper.find("#game-board").html().includes('>X<')).toBeTruthy()
   })  
 
-  it('should restart the game', () => {
+  it('should handle the restart game button', () => {
     const wrapper = mount(<Game />);
     wrapper.find('#tile-0').at(0).simulate('click');
     wrapper.find('#reset-button').simulate('click');
@@ -70,6 +70,21 @@ describe('Game', () => {
     expect(wrapper.find('#player').text()).toBe("O's turn");
     wrapper.find('#tile-1').at(0).simulate('click');
     expect(wrapper.find('#player').text()).toBe("X's turn")
+  })
+
+  it('should handle the undo button if there are changes', () => {
+    const wrapper = mount(<Game />);
+    wrapper.find('#tile-0').at(0).simulate('click');
+    wrapper.find('#tile-1').at(0).simulate('click');
+    wrapper.find('#undo-button').simulate('click');
+    expect(wrapper.find("#game-board").html().includes('>X<')).toBeTruthy();
+  })
+
+  it('should handle the undo button if there are no changes', () => {
+    const wrapper = mount(<Game />);
+    wrapper.find('#tile-0').at(0).simulate('click');
+    wrapper.find('#undo-button').simulate('click');
+    expect(wrapper.find("#game-board").html().includes('>X<')).toBeFalsy()
   })
 
 })
