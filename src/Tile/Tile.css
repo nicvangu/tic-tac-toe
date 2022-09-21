@@ -5,12 +5,10 @@
     transition: background 0.2s ease-in-out;
 }
 
-.tile:hover {
+.tile:not(.tile-occupied):hover {
     background: rgb(182, 196, 226);
 }
 
 .tile-occupied:hover {
-    background: white;
     cursor: default;
 }
-
