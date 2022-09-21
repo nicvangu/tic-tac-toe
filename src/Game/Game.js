@@ -18,23 +18,28 @@ function updateBoardHistory(history, board, command) {
     return updatedHistory;
 }
 
+function togglePlayer(currentPlayer) {
+    return currentPlayer === 'X' ? 'O' : 'X';
+}
 
 function Game() {
     const [tiles, setTiles] = useState(['','','','','','','','','']);
     const [boardHistory, setBoardHistory] = useState([]);
-
+    const [currentPlayer, setCurrentPlayer] = useState('X')
     
     const handleTileSelection = (index) => {
         let newTiles = [...tiles];
-        newTiles[index] = 'x';
+        newTiles[index] = currentPlayer;
         setTiles(newTiles);
         setBoardHistory(updateBoardHistory(boardHistory, newTiles, 'add'))
+        setCurrentPlayer(togglePlayer(currentPlayer))
     }
 
     function startGame() {
-        
+        updateBoardHistory([], null, 'reset')
+        setCurrentPlayer('X')
     }
-
+   
     return (
         <div className="Game">
             <div>

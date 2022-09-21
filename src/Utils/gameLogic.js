@@ -26,7 +26,12 @@ function isWinner(boardState, player) {
             return;
         }
     })
+
     return winsGame;
 }
 
-export { isWinner };
+function isDraw(boardState) {
+    return !boardState.includes('');
+}
+
+export { isWinner, isDraw };

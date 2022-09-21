@@ -1,6 +1,5 @@
 import Game, { updateBoardHistory } from './Game';
 import { shallow } from 'enzyme';
-import GameBoard from '../GameBoard/GameBoard';
 
 describe('Game', () => {
 
@@ -44,10 +43,6 @@ describe('Game', () => {
     expect(updateBoardHistory(history, null, 'reset')).toEqual([]);
   })
 
-  xit('should handleTileSelection', () => {
-    const wrapper = shallow(<GameBoard tiles={['','','','','','','','','']}/>);
-    wrapper.find('#tile-0').simulate('click');
-    expect(wrapper.find('#tile-0').prop('value')).toBe('x')
-  })
+
 
 })
