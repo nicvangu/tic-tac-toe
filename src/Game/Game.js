@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import GameBoard from '../GameBoard/GameBoard';
 import Options from '../Options/Options';
 import Player from '../Player/Player';
+import { isDraw, isWinner } from '../Utils/gameLogic';
 
 function updateBoardHistory(history, board, command) {
     let updatedHistory = [...history]
@@ -32,20 +33,41 @@ function Game() {
     const [boardHistory, setBoardHistory] = useState([]);
     const [currentPlayer, setCurrentPlayer] = useState('X')
     const [playerMessage, setPlayerMessage] = useState('X\'s Turn')
+    const [isGameOver, setIsGameOver] = useState(false);
 
-    const handleTileSelection = (index) => {
-        let newTiles = [...tiles];
-        let nextPlayer;
+    function handleTileSelection(index) {
+        if (!isGameOver) {
+            let newTiles = [...tiles];
+            let nextPlayer;
 
-        if (newTiles[index] === '') {
-            newTiles[index] = currentPlayer;
-            setTiles(newTiles);
-            setBoardHistory(updateBoardHistory(boardHistory, newTiles, 'add'))
-            nextPlayer = togglePlayer(currentPlayer);
-            setCurrentPlayer(nextPlayer)
-            setPlayerMessage(`${nextPlayer}\'s turn`)
+            if (newTiles[index] === '') {
+                newTiles[index] = currentPlayer;
+                setTiles(newTiles);
+                setBoardHistory(updateBoardHistory(boardHistory, newTiles, 'add'))
+                if (!findWinner(newTiles)) {
+                    nextPlayer = togglePlayer(currentPlayer);
+                    setCurrentPlayer(nextPlayer)
+                    setPlayerMessage(`${nextPlayer}\'s turn`)
+                }
+            }
         }
+    }
 
+    function findWinner(newTiles) {
+        let nextGameState = isGameOver;
+        let currentPlayerWon = isWinner(newTiles, currentPlayer);
+        let gameIsADraw = isDraw(newTiles);
+
+        if (currentPlayerWon) {
+            setPlayerMessage(`${currentPlayer} wins!`)
+        } else if (gameIsADraw) {
+            setPlayerMessage('Draw')
+        }
+        
+        nextGameState = currentPlayerWon || gameIsADraw;
+        setIsGameOver(nextGameState)
+
+        return nextGameState;
     }
 
     function initGame() {

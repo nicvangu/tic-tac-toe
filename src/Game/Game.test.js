@@ -1,5 +1,4 @@
 import Game, { updateBoardHistory } from './Game';
-import GameBoard from '../GameBoard/GameBoard';
 import { shallow, mount } from 'enzyme';
 
 describe('Game', () => {
@@ -85,6 +84,30 @@ describe('Game', () => {
     wrapper.find('#tile-0').at(0).simulate('click');
     wrapper.find('#undo-button').simulate('click');
     expect(wrapper.find("#game-board").html().includes('>X<')).toBeFalsy()
+  });
+
+  it('should check if the game ends in a victory', () => {
+    const wrapper = mount(<Game />);
+    wrapper.find('#tile-0').at(0).simulate('click');
+    wrapper.find('#tile-3').at(0).simulate('click');
+    wrapper.find('#tile-1').at(0).simulate('click');
+    wrapper.find('#tile-4').at(0).simulate('click');
+    wrapper.find('#tile-2').at(0).simulate('click');
+    expect(wrapper.find('#player').text()).toBe("X wins!");
+  })
+
+  it('should check if the game ends in a draw', () => {
+    const wrapper = mount(<Game />);
+    wrapper.find('#tile-0').at(0).simulate('click');
+    wrapper.find('#tile-3').at(0).simulate('click');
+    wrapper.find('#tile-1').at(0).simulate('click');
+    wrapper.find('#tile-4').at(0).simulate('click');
+    wrapper.find('#tile-5').at(0).simulate('click');
+    wrapper.find('#tile-8').at(0).simulate('click');
+    wrapper.find('#tile-6').at(0).simulate('click');
+    wrapper.find('#tile-2').at(0).simulate('click');
+    wrapper.find('#tile-7').at(0).simulate('click');
+    expect(wrapper.find('#player').text()).toBe("Draw");
   })
 
 })
