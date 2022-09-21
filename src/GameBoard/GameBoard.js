@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Tile from '../Tile/Tile';
 import './GameBoard.css';
 
@@ -16,17 +15,8 @@ function updateBoardHistory(history, board, command) {
     return updatedHistory;
 }
 
-function GameBoard() {
-    const [tiles, setTiles] = useState(['','','','','','','','','']);
-    const [boardHistory, setBoardHistory] = useState([]);
-
-    
-    const handleTileSelection = (index) => {
-        let newTiles = [...tiles];
-        newTiles[index] = 'x';
-        setTiles(newTiles);
-        setBoardHistory(updateBoardHistory(boardHistory, newTiles, 'add'))
-    }
+function GameBoard(props) {
+    const { tiles = [], handleTileSelection } =  props;
 
     return (<div className="game-board">
         {tiles.map((value, index) => {
@@ -36,5 +26,3 @@ function GameBoard() {
 }
 
 export default GameBoard;
-
-export { updateBoardHistory }
