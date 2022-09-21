@@ -31,10 +31,14 @@ function Game() {
     
     const handleTileSelection = (index) => {
         let newTiles = [...tiles];
-        newTiles[index] = currentPlayer;
-        setTiles(newTiles);
-        setBoardHistory(updateBoardHistory(boardHistory, newTiles, 'add'))
-        setCurrentPlayer(togglePlayer(currentPlayer))
+
+        if (newTiles[index] === '') {
+            newTiles[index] = currentPlayer;
+            setTiles(newTiles);
+            setBoardHistory(updateBoardHistory(boardHistory, newTiles, 'add'))
+            setCurrentPlayer(togglePlayer(currentPlayer))
+        }
+
     }
 
     function initGame() {

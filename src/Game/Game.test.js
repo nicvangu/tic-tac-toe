@@ -50,6 +50,13 @@ describe('Game', () => {
     expect(wrapper.find("#game-board").html().includes('>X<')).toBeTruthy()
   })
 
+  it('should not change an existing cell\'s value', () => {
+    const wrapper = mount(<Game />);
+    wrapper.find('#tile-0').at(0).simulate('click');
+    wrapper.find('#tile-0').at(0).simulate('click');
+    expect(wrapper.find("#game-board").html().includes('>X<')).toBeTruthy()
+  })  
+
   it('should restart the game', () => {
     const wrapper = mount(<Game />);
     wrapper.find('#tile-0').at(0).simulate('click');
